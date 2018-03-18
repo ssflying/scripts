@@ -7,7 +7,7 @@ rules=(
 )
 
 # sed returns self-contained awk script, [] to prevent sed line
-gawk -f <(sed -e '/[B]EGIN_AWK1/,/[E]ND_AWK1/!d' $0) <(printf "%s\n" "${rules[@]}") <(iconv -f gbk -t utf8 $1)
+awk -f <(sed -e '/[B]EGIN_AWK1/,/[E]ND_AWK1/!d' $0) <(printf "%s\n" "${rules[@]}") <(iconv -f gbk -t utf8 $1)
 
 exit 
 # shell script end here
@@ -24,7 +24,7 @@ FNR == NR {
 	next
 }
 
-NR != 1 {
+FNR != NR && NR != 1 {
 	sub(",", "", $4)	# date
 	gsub(",", "", $5)	# details
 	split($5, a, "\"")
