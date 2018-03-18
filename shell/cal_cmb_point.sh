@@ -52,9 +52,8 @@ NR != 1 {
 }
 
 END { 
-	printf("\n");
-	printf("交易笔数: %d\n", NR-1)
-	printf("金额合计: %d\n", sum)
+	printf("交易笔数: %d\n", FNR-1)
+	printf("金额合计: %.2f\n", sum)
 	printf("交易积分合计: %d\n", total_point)
 }
 
