@@ -1,0 +1,10 @@
+{
+  set +o                     # Option settings
+  (shopt -p) 2>/dev/null     # bash-specific options, subshell silences ksh
+  set                        # Variables and values
+  export -p                  # Exported variables
+  readonly -p                # Read-only variables
+  trap                       # Trap settings
+
+  typeset -f                 # Function definitions (not POSIX)
+} > /tmp/shell.state

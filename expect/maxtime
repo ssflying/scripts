@@ -1,0 +1,8 @@
+#!/usr/bin/env expect
+
+set timeout [lindex $argv 0]
+eval spawn [lrange $argv 1 end]
+expect {
+	timeout {puts "took too much time"}
+	eof	{puts "finished in time"}
+}
