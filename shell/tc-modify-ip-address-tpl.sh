@@ -14,7 +14,7 @@
 # 请填入需要修改的模块ID：https://console.cloud.tencent.com/vpc/tpl
 #AddressTemplateId="ipm-edjd7jks"
 
-if [[ -z "$SecretId" ]] || [[ -z "$SecretKey" ]] || [[ -z "$Region" ]] || [[ -z "$AddressTemplatedId" ]] ; then
+if [[ -z "$SecretId" ]] || [[ -z "$SecretKey" ]] || [[ -z "$Region" ]] || [[ -z "$AddressTemplateId" ]] ; then
     echo "请修改脚本，配置SecretId和SecretKey值，以及可用区域和地址模板"
     exit 1
 fi
