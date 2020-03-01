@@ -94,7 +94,7 @@ $HashedCanonicalRequest"
 }
 
 # 本机的出口IP
-MYIP=$(curl --silent --connect-timeout 10 http://ipinfo.io/ip)
+MYIP=$(curl --silent --connect-timeout 10 http://ip.sb)
 
 # 查询当前IP组下有多少IP
 QUERY_ADDR_PAYLOAD='{ "Filters": [ { "Name": "address-template-id", "Values": [ "'$AddressTemplateId'" ] } ] }'
@@ -116,6 +116,10 @@ if ! grep -q "$AddressTemplateId" <<<"$RESPONSE"; then
     exit 1
 fi
 CURR_IP_ADDR=$(echo "$RESPONSE" | jq --compact-output .Response.AddressTemplateSet[0].AddressSet)
+if grep -wq "$MYIP" <<<"$CURR_IP_ADDR"; then
+    echo "已经存在该IP无须添加"
+    exit 0
+fi
 NEW_IP_ADDR="${CURR_IP_ADDR%]},\"$MYIP\"]"
 [[ $DEBUG ]] && printf "$NEW_IP_ADDR\n"
 
